@@ -19,4 +19,4 @@ Route::get("/about", "App\Http\Controllers\HomeController@about")->name("home.ab
 
 Route::get("/products", "App\Http\Controllers\ProductsController@index")->name("home.products");
 
-Route::get("/products/{id}", "App\Http\Controllers\ProductsController@show")->name("home.products.");
+Route::get("/products/{id}", "App\Http\Controllers\ProductsController@show")->name("products.show");

@@ -2,19 +2,19 @@
 @extends('layouts.app')         
 
 <!-- Inyectamos el texto que contiene el título en el yield "title" -->
-@section("title", "Productos")
+@section("title",  $viewData["title"])
 
 <!-- Inyectamos el texto que contiene el título en el yield "subtitle" -->
-@section("subtitle", "Listado productos")
+@section("subtitle", $viewData["subtitle"])
 
 <!-- Inyectamos el texto con el contenido de la página en el yield "content" -->
 @section('content') 
 
     <div class="row">
-    @foreach ($products as $product)
+    @foreach ($viewData['products'] as $product)
         <div class="col-md-6 col-lg-4 mb-2">
             <img src="{{ asset($product['imagen']) }}" class="img-fluid rounded">
-            <a href="">{{ $product['nombre'] }}</a>
+            <a href="{{route('products.show' , $loop -> index ) }}">{{ $product['nombre'] }}</a>
         </div>
     @endforeach
     </div>
