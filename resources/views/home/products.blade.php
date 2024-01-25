@@ -14,7 +14,7 @@
     @foreach ($viewData['products'] as $product)
         <div class="col-md-6 col-lg-4 mb-2">
             <img src="{{ asset($product['imagen']) }}" class="img-fluid rounded">
-            <a href="{{route('products.show' , $loop -> index ) }}">{{ $product['nombre'] }}</a>
+            <a href="{{route('products.show' , $product['id'] ) }}">{{ $product['nombre'] }}</a>
         </div>
     @endforeach
     </div>
