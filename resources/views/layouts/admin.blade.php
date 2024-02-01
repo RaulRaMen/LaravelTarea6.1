@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     crossorigin="anonymous" />
-  <link href="asset('/css/admin.css')" rel="stylesheet" />
+  <link href="{{asset('/css/admin.css')}}" rel="stylesheet" />
   <title>@yield('title', 'Panel de Control')</title>
 </head>
 
@@ -20,7 +20,7 @@
       <hr />
       <ul class="nav flex-column">
         <li><a href="{{ route('admin.index') }}" class="nav-link text-white">- Admin - Inicio</a></li>
-        <li><a href="" class="nav-link text-white">- Admin - Productos</a></li>
+        <li><a href="{{ route('admin.products') }}" class="nav-link text-white">- Admin - Productos</a></li>
         <li>
           <a href="{{ route('home.index') }}" class="mt-2 btn bg-primary text-white">Volver a la página principal</a>
         </li>
@@ -30,7 +30,7 @@
     <div class="col content-grey">
       <nav class="p-3 shadow text-end">
         <span class="profile-font">Admin</span>
-        <img class="img-profile rounded-circle" src="{{ asset('undraw_profile.svg') }}">
+        <img class="img-profile rounded-circle" src="{{ asset('/img/undraw_profile.svg') }}">
       </nav>
 
       <div class="g-0 m-5">
