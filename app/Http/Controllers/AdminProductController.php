@@ -21,10 +21,18 @@ class AdminProductController extends Controller
         $nombre = $request -> input('name');
         $precio = $request -> input('price');
         $descripcion = $request -> input('description');
-        $imagen = $request -> file('image')->getRealPath();
         
-        Product::create(['nombre' => $nombre,'precio' => $precio,'descripcion' => $descripcion,'imagen' => 'no hay']);
+        /*$imagen = $request -> file('image');
+        $nombreArchivo= $imagen->getClientOriginalName();
 
+        Se puede ver la extension, usar el metodo hash para generar un nombre de archivo
+
+        Storage::disk('public')->put(  
+            $nombreArchivo,
+            file_get_contents($request->file('file')->getRealPath())  
+        );
+        */
+        Product::create(['nombre' => $nombre,'precio' => $precio,'descripcion' => $descripcion,'imagen' => 'no hay']);
         $viewData = [];
         $viewData["title"] = "Admin Page - Products - Online Store";
         $viewData["products"] = Product::all();
