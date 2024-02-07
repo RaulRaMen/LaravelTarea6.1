@@ -13,7 +13,7 @@
     <div class="row">
     @foreach ($viewData['products'] as $product)
         <div class="col-md-6 col-lg-4 mb-2">
-            <img src="{{ asset($product['imagen']) }}" class="img-fluid rounded">
+            <img src="{{asset('/storage/'.$product['imagen']) }}" class="img-fluid rounded border">
             <a href="{{route('products.show' , $product['id'] ) }}">{{ $product['nombre'] }}</a>
         </div>
     @endforeach

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminProductController extends Controller
 {
@@ -18,21 +19,19 @@ class AdminProductController extends Controller
     }
 
     public function store(Request $request){
-        $nombre = $request -> input('name');
-        $precio = $request -> input('price');
-        $descripcion = $request -> input('description');
+        $name = $request -> input('name');
+        $price = $request -> input('price');
+        $description = $request -> input('description');
         
-        /*$imagen = $request -> file('image');
-        $nombreArchivo= $imagen->getClientOriginalName();
-
-        Se puede ver la extension, usar el metodo hash para generar un nombre de archivo
+        $uuid = Str::uuid()->toString();
+        $fileName= $uuid.".".($request -> file('image')->getClientOriginalExtension());
 
         Storage::disk('public')->put(  
-            $nombreArchivo,
-            file_get_contents($request->file('file')->getRealPath())  
+            $fileName,
+            file_get_contents($request->file('image')->getRealPath())  
         );
-        */
-        Product::create(['nombre' => $nombre,'precio' => $precio,'descripcion' => $descripcion,'imagen' => 'no hay']);
+        
+        Product::create(['nombre' => $name,'precio' => $price,'descripcion' => $description,'imagen' => $fileName]);
         $viewData = [];
         $viewData["title"] = "Admin Page - Products - Online Store";
         $viewData["products"] = Product::all();
