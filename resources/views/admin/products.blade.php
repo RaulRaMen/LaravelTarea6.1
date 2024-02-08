@@ -59,10 +59,17 @@
       <tbody>
         @foreach ($viewData['products'] as $product)
           <tr>
+            
             <td>{{$product['id']}}</td>
             <td>{{ $product['nombre'] }}</td>
+            
             <td><a href="#">Editar</a></td>
-            <td><a href="#">Eliminar</a></td>
+
+            <form action="{{route('admin.products.delete' , $product['id'] ) }}" method="post">
+              @method('DELETE')
+              @csrf
+              <td><button type="submit" class="btn btn-danger">Eliminar</button></td>
+            </form>
           </tr>
         @endforeach
       </tbody>

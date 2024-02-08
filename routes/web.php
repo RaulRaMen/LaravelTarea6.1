@@ -24,3 +24,5 @@ Route::get("/admin","App\Http\Controllers\AdminHomeController@index")->name("adm
 Route::get('/admin/products', 'App\Http\Controllers\AdminProductController@index')->name("admin.products");
 
 Route::post('/admin/products/store', 'App\Http\Controllers\AdminProductController@store')->name("admin.products.store");
+
+Route::delete('/admin/products/delete/{id}', 'App\Http\Controllers\AdminProductController@destroy')->name("admin.products.delete");

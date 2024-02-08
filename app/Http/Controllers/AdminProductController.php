@@ -54,4 +54,13 @@ class AdminProductController extends Controller
             return view('admin.products')->with("viewData", $viewData);
         }
     }
+
+    public function destroy($id){
+        //Hay que implementar una comprobacion para que en caso de tener una imagen asignada borrarla antes 
+        Product::destroy($id);
+        $viewData = [];
+        $viewData["title"] = "Admin Page - Products - Online Store";
+        $viewData["products"] = Product::all();
+        return view('admin.products')->with("viewData", $viewData);
+    }
 }
