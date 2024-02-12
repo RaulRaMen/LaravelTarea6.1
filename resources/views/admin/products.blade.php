@@ -18,8 +18,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="mb-3 row">
+        <div class="col">s
             <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Precio:</label>
             <div class="col-lg-10 col-md-6 col-sm-12">
               <input name="price" value="" type="number" class="form-control">
@@ -29,9 +28,9 @@
       </div>
       <div class="mb-3 row">
         <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Imagen:</label>
-          <div class="col-lg-10 col-md-6 col-sm-12">
-            <input type="file" name="image">
-          </div>
+        <div class="col-lg-10 col-md-6 col-sm-12">
+          <input type="file" name="image">
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Descripción</label>
@@ -63,7 +62,7 @@
             <td>{{$product['id']}}</td>
             <td>{{ $product['nombre'] }}</td>
             
-            <td><a href="#">Editar</a></td>
+            <td><a href="{{route('admin.products.edit' , $product['id'] ) }}">Editar</a></td>
 
             <form action="{{route('admin.products.delete' , $product['id'] ) }}" method="post">
               @method('DELETE')

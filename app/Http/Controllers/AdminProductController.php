@@ -63,4 +63,41 @@ class AdminProductController extends Controller
         $viewData["products"] = Product::all();
         return view('admin.products')->with("viewData", $viewData);
     }
+
+    public function edit($id){
+        $product = Product::find($id);
+        $viewData = [];
+        $viewData["title"] ="Producto ".$id;    
+        $viewData["product"] = $product;
+        return view("admin.edit")->with("viewData", $viewData);
+    }
+
+    public function update(Request $request){
+
+        $product = Product::find($request->input('id'));
+        $product["nombre"] = $request->input('name');
+        $product["precio"] = $request->input('price');
+        $product["descripcion"] = $request->input('description');
+
+        if($request->hasFile('image')){
+            
+            if($product["imagen"]!="notYet.jpg"){
+                Storage::delete(public_path().'\storage\ '.$product["imagen"]);
+            }
+            $uuid = Str::uuid()->toString();
+            $fileName= $uuid.".".($request -> file('image')->getClientOriginalExtension());
+            Storage::disk('public')->put(  
+                $fileName,
+                file_get_contents($request->file('image')->getRealPath())  
+            );
+            $product["imagen"] = $fileName;
+            
+        }
+        $product->save();
+
+        $viewData = [];
+        $viewData["title"] = "Admin Page - Products - Online Store";
+        $viewData["products"] = Product::all();
+        return view('admin.products')->with("viewData", $viewData);
+    }
 }
