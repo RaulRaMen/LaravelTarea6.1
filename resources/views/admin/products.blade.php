@@ -6,7 +6,15 @@
     Crear producto
   </div>
   <div class="card-body">
-
+    @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
     <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
       @csrf
       <div class="row">
@@ -18,7 +26,7 @@
             </div>
           </div>
         </div>
-        <div class="col">s
+        <div class="col">
             <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Precio:</label>
             <div class="col-lg-10 col-md-6 col-sm-12">
               <input name="price" value="" type="number" class="form-control">
